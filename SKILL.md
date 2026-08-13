@@ -1,261 +1,300 @@
 ---
 name: ultimate-cheat-design
-description: The master design engineering & craft framework for building high-converting, tactical gaming software & digital license storefronts. Encodes the synthesis of PenguinBy and RiftCheats with Emil Kowalski polish, Kokonut UI glassmorphism, Apple fluid interfaces, Anime.js motion physics, and dynamic brand color extraction.
+description: The master design engineering & craft framework for building high-converting, tactical gaming software & digital license storefronts. Encodes native SellAuth Visual Editor integration, SolarServices product routing, 2-step OTP software download widgets, dual-lane marquee reviews, canvas telemetry sparklines, and Emil Kowalski craft polish.
 ---
 
 # ⚔️ Ultimate Cheat Design Skill: The Master Engineering Framework
 
-> The definitive design engineering specification for elite digital software & gaming license storefronts. Combines **Emil Kowalski's craft polish**, **Apple WWDC fluid interface motion**, **Kokonut UI midnight glassmorphism**, **Anime.js timeline orchestration**, and **zero-latency store synchronization**.
+> The definitive design engineering specification for elite digital software & gaming license storefronts. Combines **SellAuth native Nunjucks synchronization**, **SolarServices dedicated product page architecture**, **2-step OTP software verification widgets**, **dual-lane marquee reviews**, **canvas telemetry sparklines**, **Emil Kowalski craft polish**, and **zero-latency store synchronization**.
 
 ---
 
-## 🎨 1. Dynamic Brand Color Extraction Architecture
+## 🎨 1. Dynamic Brand & SellAuth Visual Editor Integration
 
-> ⚠️ **NO FIXED PALETTE RULE**: Color palettes are dynamically extracted from the project's logo upon initialization. The base obsidian void and surface layers remain universally dark and tactile:
+> ⚠️ **ZERO HARDCODED BRANDING RULE**: Storefronts must adapt dynamically to the merchant's brand logo, name, and products. Never hardcode static brand logos or titles in templates.
 
-```css
-:root {
-  /* ── Universal Obsidian Surface System ── */
-  --bg-void: #030712;             /* Deep Cosmos Base */
-  --bg-surface-subtle: #070a14;   /* Card Surface Low */
-  --bg-surface-card: #0c0f1d;     /* Card Surface Standard */
-  --bg-surface-elevated: #131728; /* Modal & Drawer Background */
-  --bg-glass-backdrop: rgba(12, 16, 28, 0.78); /* Translucent Backdrop Blur */
+### Dynamic Nunjucks Brand Extraction (`index.html` / `shop.njk`)
+```html
+<!-- Brand Navbar Logo -->
+<a href="#hero" class="nav-brand">
+  {% if shop and shop.logo_url %}
+    <img src="{{ shop.logo_url }}" alt="{% if shop %}{{ shop.name }}{% else %}Store{% endif %} Logo" id="shop-logo-img" style="height: 32px; width: auto; max-width: 140px; object-fit: contain; border-radius: 6px;" />
+  {% else %}
+    <div class="nav-brand-icon-box" style="width: 32px; height: 32px; border-radius: 8px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); display: inline-flex; align-items: center; justify-content: center; margin-right: 4px;">
+      <i class="fa-solid fa-shield-halved" style="color: #ffffff; font-size: 0.95rem;"></i>
+    </div>
+  {% endif %}
+  <span class="shop-name-text">{% if shop %}{{ shop.name }}{% else %}Store{% endif %}</span>
+</a>
+```
 
-  /* ── Dynamic Brand Tokens (Extracted from Logo) ── */
-  --brand-primary: [EXTRACT_DOMINANT_FROM_LOGO];       /* Primary Accent */
-  --brand-secondary: [EXTRACT_SECONDARY_FROM_LOGO];   /* Secondary Tint */
-  --brand-accent-glow: [EXTRACT_ACCENT_GLOW];         /* High-Luminescence Specular Glow */
-  --brand-gradient: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+### Native SellAuth Nunjucks Products & Categories Loop
+```html
+<!-- Products Grid (SellAuth Nunjucks Loop + Dynamic JS Fallback) -->
+<div class="grid-products-saas" id="products-grid">
+  {% if products and products|length > 0 %}
+    {% for product in products %}
+      <div class="product-card-lux" data-product-id="{{ product.path or product.id }}" data-dsr>
+        <div class="product-card-banner">
+          <img src="{% if product.image_urls and product.image_urls|length > 0 %}{{ product.image_urls[0] }}{% elif product.image %}{{ product.image.url or product.image }}{% else %}https://static.mysellauth.com/storage/images/988311.webp{% endif %}" alt="{{ product.title or product.name }}" class="product-banner-img" loading="lazy" />
+          <div class="product-banner-gradient"></div>
+          <div class="product-status-tag status-ok">
+            <span class="status-indicator-dot"></span>
+            <span>UNDETECTED</span>
+          </div>
+        </div>
+        <div class="product-card-info">
+          <div class="product-header-block">
+            <span class="product-game-label">{% if product.group %}{{ product.group.title or product.group.name }}{% else %}SOFTWARE{% endif %}</span>
+            <h3 class="product-title-lux">{{ product.title or product.name }}</h3>
+          </div>
+          <div class="product-card-bottom-bar">
+            <div class="product-price-box">
+              <span class="price-prefix">From</span>
+              <span class="price-amount-lux">${{ product.min_price or product.price or '0.00' }}</span>
+            </div>
+            <a href="{{ ('/product/' + (product.path or product.id)) | shopUrl }}" class="btn-product-buy buy-now-btn">
+              <span>Get License</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  {% endif %}
+</div>
+```
 
-  /* ── Tactical Status Indicator Tokens ── */
-  --status-undetected-bg: #031d16;
-  --status-undetected-border: rgba(16, 185, 129, 0.45);
-  --status-undetected-text: #6ee7b7;
-  --status-undetected-glow: rgba(16, 185, 129, 0.35);
+---
 
-  --status-updating-bg: #261604;
-  --status-updating-border: rgba(245, 158, 11, 0.45);
-  --status-updating-text: #fcd34d;
+## ☀️ 2. SolarServices Dedicated Product Page Router (`#/product/:id`)
 
-  --status-out-of-stock-bg: #22080a;
-  --status-out-of-stock-border: rgba(239, 68, 68, 0.4);
-  --status-out-of-stock-text: #fca5a5;
+When a user selects a product, transition into a dedicated high-converting product showcase route with plan duration grids and feature breakdowns.
 
-  /* ── Surface Borders & Shadows ── */
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-medium: rgba(255, 255, 255, 0.16);
-  --border-highlight: rgba(255, 255, 255, 0.28);
-  --shadow-tactile-card: 0 30px 100px rgba(0, 0, 0, 0.6);
+```javascript
+// Dedicated Product Page State & Duration Selection
+let activeProductPlanDuration = '1 Day';
+let activeProductQty = 1;
+
+function openProductPage(productId) {
+  const products = window.STACK_PRODUCTS || [];
+  const product = products.find(p => p.id === productId);
+  if (!product) return;
+
+  activeProductPlanDuration = (product.plans && product.plans.length) ? product.plans[0].duration : '1 Day';
+  activeProductQty = 1;
+
+  // Update hash route
+  history.pushState(null, '', `#/product/${product.id}`);
+
+  // Populate metadata
+  document.getElementById('sp-title').textContent = product.name;
+  document.getElementById('sp-img').src = product.image;
+  document.getElementById('sp-status-text').textContent = (product.status || 'undetected').toUpperCase();
+
+  renderSolarDurationGrid(product);
+  updateSolarTotalPrice(product);
+  renderSolarDescription(product);
+}
+
+function renderSolarDurationGrid(product) {
+  const grid = document.getElementById('sp-duration-grid');
+  if (!grid) return;
+
+  grid.innerHTML = product.plans.map(plan => {
+    const isActive = plan.duration === activeProductPlanDuration;
+    const formattedPrice = window.StackStore ? window.StackStore.formatPrice(plan.price) : `$${plan.price.toFixed(2)}`;
+    return `
+      <div class="solar-duration-card ${isActive ? 'active' : ''}" data-duration="${_esc.attr(plan.duration)}">
+        <span class="solar-duration-name">${_esc.html(plan.duration)}</span>
+        <div class="solar-duration-price-wrap">
+          <span class="solar-duration-price">${formattedPrice}</span>
+          <div class="solar-radio-dot"></div>
+        </div>
+      </div>
+    `;
+  }).join('');
 }
 ```
 
 ---
 
-## ⚡ 2. Emil Kowalski Craft & Apple Fluid Interface Principles
+## 🔐 3. Software Downloads & 2-Step OTP Verification Widget (`.dlg-card`)
 
-### The 4 Non-Negotiable Laws of Polish
-1. **Taste is Trained**: Study top interfaces, reverse engineer motion physics, and eliminate friction.
-2. **Unseen Details Compound**: High-frequency elements (buttons, inputs, cards) must feel completely natural.
-3. **No Sluggish Transitions**: Never use `transition: all 300ms`. Target explicit GPU properties (`transform`, `opacity`) with durations under `200ms`.
-4. **Tactile Feedback**: Every pressable element MUST scale down on click:
+Implement a secure, frictionless customer portal for license lookup, OTP verification, and direct software launcher access:
+
+```javascript
+// 2-Step OTP Verification & Download Widget Flow
+function initSoftwareDownloadsWidget() {
+  const card = document.querySelector('.dlg-card');
+  if (!card) return;
+
+  const otpSendLimiter = createRateLimiter(5, 60000, 30000);   // Max 5 attempts per min
+  const otpVerifyLimiter = createRateLimiter(8, 60000, 60000); // Max 8 verifies per min
+
+  // Render 6-cell numeric inputs with auto-advance and paste handling
+  const cellsWrap = card.querySelector('[data-dl-cells]');
+  if (cellsWrap) {
+    let html = '';
+    for (let i = 0; i < 6; i++) {
+      html += `<input class="dlg-cell" inputmode="numeric" maxlength="1"${i === 0 ? ' autocomplete="one-time-code"' : ''} />`;
+    }
+    cellsWrap.innerHTML = html;
+  }
+}
+```
+
+### License Key Reveal & Copy Protection
+```javascript
+// License Key Reveal Toggle with Masking
+card.addEventListener('click', e => {
+  const rev = e.target.closest('[data-dl-reveal]');
+  if (rev) {
+    const kv = rev.closest('.dlg-item').querySelector('[data-dl-keyval]');
+    if (kv.getAttribute('data-shown') === '1') {
+      kv.textContent = '••••••••••••••••';
+      kv.setAttribute('data-shown', '');
+      rev.textContent = 'Reveal';
+    } else {
+      kv.textContent = rev.getAttribute('data-key');
+      kv.setAttribute('data-shown', '1');
+      rev.textContent = 'Hide';
+    }
+  }
+
+  const cp = e.target.closest('[data-dl-kcopy]');
+  if (cp) {
+    navigator.clipboard.writeText(cp.getAttribute('data-key'));
+    cp.textContent = 'Copied!';
+    setTimeout(() => { cp.textContent = 'Copy'; }, 1500);
+  }
+});
+```
+
+---
+
+## 🛡️ 4. Security, Input Sanitization & Rate Limiting
+
+> ⚠️ **MANDATORY SECURITY RULE**: All user inputs and API responses rendered into `innerHTML` MUST be sanitized. Rate limit sensitive API endpoints client-side.
+
+```javascript
+// Global XSS Sanitization Helpers
+const _esc = {
+  html(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); },
+  attr(s) { return _esc.html(s).replace(/"/g, '&quot;').replace(/'/g, '&#39;'); },
+  url(s) { return /^(https?:\/\/|#|\/)/i.test(String(s || '')) ? String(s) : '#'; }
+};
+
+// Client-Side Rate Limiter Factory
+function createRateLimiter(maxAttempts, windowMs, cooldownMs) {
+  let attempts = 0;
+  let windowStart = Date.now();
+  let cooldownUntil = 0;
+  return {
+    check() {
+      const now = Date.now();
+      if (now < cooldownUntil) return { allowed: false, retryAfter: Math.ceil((cooldownUntil - now) / 1000) };
+      if (now - windowStart > windowMs) { attempts = 0; windowStart = now; }
+      if (attempts >= maxAttempts) {
+        cooldownUntil = now + cooldownMs;
+        return { allowed: false, retryAfter: Math.ceil(cooldownMs / 1000) };
+      }
+      attempts++;
+      return { allowed: true };
+    }
+  };
+}
+```
+
+---
+
+## 🌟 5. Dual-Lane Infinite Marquee Feedbacks System
+
+Continuous dual-directional reviews marquee creates social proof without cluttering static sections:
+
+```javascript
+function renderFeedbacks() {
+  const track1 = document.getElementById('feedbacks-track-forward');
+  const track2 = document.getElementById('feedbacks-track-reverse');
+
+  const half = Math.ceil(window.STACK_REVIEWS.length / 2);
+  const lane1 = [...window.STACK_REVIEWS.slice(0, half), ...window.STACK_REVIEWS.slice(0, half)];
+  const lane2 = [...window.STACK_REVIEWS.slice(half), ...window.STACK_REVIEWS.slice(half)];
+
+  const createReviewHtml = (r) => `
+    <div class="review-card">
+      <div class="review-header">
+        <div class="review-stars">${Array(Math.min(Math.max(parseInt(r.stars) || 0, 0), 5)).fill('<i class="fa-solid fa-star"></i>').join('')}</div>
+        <span class="review-date">${_esc.html(r.date)}</span>
+      </div>
+      <p class="review-text">"${_esc.html(r.message)}"</p>
+      <div class="review-product-tag">
+        <i class="fa-solid fa-circle-check" style="color: #34d399;"></i>
+        <span>${_esc.html(r.product)}</span>
+      </div>
+    </div>
+  `;
+
+  if (track1) track1.innerHTML = lane1.map(createReviewHtml).join('');
+  if (track2) track2.innerHTML = lane2.map(createReviewHtml).join('');
+}
+```
+
+---
+
+## 📊 6. Real-Time Status Matrix & Backlit Canvas Sparklines
+
+Display anticheat health with interactive uptime graphs rendered directly on HTML5 canvas:
+
+```javascript
+function drawBacklitSparkline(canvas, points, strokeColor) {
+  const ctx = canvas.getContext('2d');
+  const w = canvas.width = canvas.offsetWidth;
+  const h = canvas.height = canvas.offsetHeight;
+  ctx.clearRect(0, 0, w, h);
+
+  const min = Math.min(...points);
+  const max = Math.max(...points);
+  const range = (max - min) || 1;
+
+  ctx.beginPath();
+  points.forEach((p, idx) => {
+    const x = (idx / (points.length - 1)) * w;
+    const y = h - ((p - min) / range) * (h - 8) - 4;
+    if (idx === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  });
+
+  ctx.strokeStyle = strokeColor;
+  ctx.lineWidth = 2;
+  ctx.shadowColor = strokeColor;
+  ctx.shadowBlur = 8;
+  ctx.stroke();
+}
+```
+
+---
+
+## ⚡ 7. Emil Kowalski Craft & Micro-Animation Laws
+
+1. **GPU Acceleration**: Always animate `transform` and `opacity` (never `width`, `height`, or `margin`).
+2. **Tactile Press Feedback**: Every button must scale down on click:
    ```css
-   .tactile-button {
-     transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), background-color 150ms ease, border-color 150ms ease;
+   .btn-product-buy, .solar-duration-card, .btn-primary {
+     transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), background 150ms ease, border-color 150ms ease;
    }
-   .tactile-button:active {
+   .btn-product-buy:active, .solar-duration-card:active {
      transform: scale(0.97);
    }
    ```
-
-### Craft Review Table (Before vs. After)
-
-| Before (Generic / AI Slop) | After (Elite Craft) | Rationale |
-| :--- | :--- | :--- |
-| `transition: all 300ms` | `transition: transform 180ms ease-out, opacity 180ms ease-out` | Avoid layout thrashing and sluggish repaints. |
-| `transform: scale(0)` | `transform: scale(0.95); opacity: 0` | Natural objects never enter from literal zero geometry. |
-| Generic `ease-in` curves | `cubic-bezier(0.16, 1, 0.3, 1)` | `ease-in` feels delayed; custom `ease-out` feels instant. |
-| Static button without press state | `:active { transform: scale(0.97); }` | Provides immediate physical confirmation of click. |
-| Washed-out status badges | Translucent pill with glowing pulsing dot (`● UNDETECTED`) | High contrast against any game box art or thumbnail background. |
-| Centered popover zoom | `transform-origin: top right` (trigger origin) | Popovers must scale from the button that spawned them. |
+3. **Smooth Scroll & Fast Modals**: Popups and drawers must open within `180ms` using `cubic-bezier(0.16, 1, 0.3, 1)`.
 
 ---
 
-## 🛡️ 3. High-Contrast Tactical Status Badges
+## 🚫 8. Anti-Cliché & Anti-AI-Slop Rules
 
-```jsx
-export function UndetectedBadge() {
-  return (
-    <span className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-emerald-500/40 bg-emerald-950/90 px-3 py-1 font-mono text-[0.62rem] font-bold uppercase tracking-wider text-emerald-300 backdrop-blur-md shadow-[0_0_15px_rgba(16,185,129,0.3)]">
-      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-      UNDETECTED
-    </span>
-  );
-}
-```
-
----
-
-## 🎯 4. Interactive Simulation & Game Telemetry Components
-
-Live interactive telemetry allows prospective buyers to experience FOV tuning, bone selection, and visual ESP before checkout:
-
-```jsx
-export function InteractiveMannequinSimulation({ fov = 90, targetBone = "Head", showEsp = true, showHealth = true }) {
-  const boneMap = {
-    Head: { x: 50, y: 20 },
-    Neck: { x: 50, y: 34 },
-    Chest: { x: 50, y: 54 }
-  };
-  const activeBone = boneMap[targetBone] || boneMap.Head;
-  const fovRadius = Math.max(35, Math.min(125, fov / 2.2));
-
-  return (
-    <div className="relative flex h-[300px] w-full flex-col items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-black/90 p-4 font-mono select-none">
-      <div className="absolute inset-0 site-grid opacity-25" />
-      
-      {/* FOV Circle */}
-      <div 
-        style={{ width: `${fovRadius * 2}px`, height: `${fovRadius * 2}px` }}
-        className="pointer-events-none absolute rounded-full border border-white/20 bg-white/[0.015] shadow-[0_0_20px_rgba(255,255,255,0.05)] flex items-center justify-center transition-all duration-150 ease-out"
-      >
-        <div className="h-1 w-1 rounded-full bg-white/40" />
-      </div>
-
-      {/* Moving Target Simulation */}
-      <motion.div
-        animate={{ x: [-45, 45, -45] }}
-        transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }}
-        className="relative flex h-[160px] w-[80px] flex-col items-center justify-center z-10"
-      >
-        <div className="absolute -top-7 whitespace-nowrap rounded border border-white/20 bg-black/90 px-2 py-0.5 text-[0.55rem] font-bold text-white shadow-md">
-          <span>ENEMY_TARGET [22M]</span>
-        </div>
-
-        {showHealth && (
-          <div className="absolute -left-3 top-0 bottom-0 w-[3px] rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.9)]" />
-        )}
-
-        {showEsp && (
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute -top-1 -left-1 h-3.5 w-3.5 border-t-2 border-l-2 border-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
-            <div className="absolute -top-1 -right-1 h-3.5 w-3.5 border-t-2 border-r-2 border-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
-            <div className="absolute -bottom-1 -left-1 h-3.5 w-3.5 border-b-2 border-l-2 border-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
-            <div className="absolute -bottom-1 -right-1 h-3.5 w-3.5 border-b-2 border-r-2 border-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
-          </div>
-        )}
-
-        <div 
-          style={{ top: `${activeBone.y}px`, left: `${activeBone.x}px` }}
-          className="absolute h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-red-500 shadow-[0_0_10px_rgba(239,68,68,1)] animate-ping"
-        />
-      </motion.div>
-    </div>
-  );
-}
-```
-
----
-
-## 🎡 5. 3D Perspective Card Carousel (Anime.js & Spring Physics)
-
-```jsx
-export function PerspectiveCardCarousel({ items, activeIndex, onSelect }) {
-  return (
-    <div className="relative h-[360px] w-full max-w-[460px] flex items-center justify-center perspective-[1000px] select-none">
-      {items.map((item, index) => {
-        const offset = (index - activeIndex + items.length) % items.length;
-        
-        let zIndex = 0;
-        let scale = 0.75;
-        let translateX = "100%";
-        let opacity = 0;
-
-        if (offset === 0) {
-          zIndex = 30;
-          scale = 1.05;
-          translateX = "0%";
-          opacity = 1;
-        } else if (offset === 1 || offset === -(items.length - 1)) {
-          zIndex = 20;
-          scale = 0.88;
-          translateX = "48%";
-          opacity = 0.65;
-        } else if (offset === items.length - 1 || offset === -1) {
-          zIndex = 10;
-          scale = 0.88;
-          translateX = "-48%";
-          opacity = 0.65;
-        }
-
-        return (
-          <motion.div
-            key={item.id}
-            onClick={() => onSelect(index)}
-            animate={{ scale, x: translateX, opacity, zIndex }}
-            transition={{ type: "spring", stiffness: 240, damping: 24 }}
-            className={`absolute top-0 w-[300px] sm:w-[330px] cursor-pointer overflow-hidden rounded-3xl border bg-[#090d16]/95 p-5 shadow-[0_25px_80px_rgba(0,0,0,0.8)] backdrop-blur-2xl ${
-              offset === 0
-                ? "border-primary/60 shadow-[0_0_40px_rgba(59,130,246,0.35)]"
-                : "border-white/10"
-            }`}
-          >
-            <div className="aspect-[16/10] overflow-hidden rounded-2xl border border-white/10 bg-black">
-              <img src={item.thumbnail} alt={item.name} className="h-full w-full object-cover" />
-            </div>
-            <div className="mt-4 flex items-center justify-between">
-              <h4 className="font-sans text-lg font-bold text-white">{item.name}</h4>
-              <span className="font-mono text-sm text-primary font-bold">{item.price}</span>
-            </div>
-          </motion.div>
-        );
-      })}
-    </div>
-  );
-}
-```
-
----
-
-## 🔄 6. Zero-Latency Store Synchronization Architecture
-
-Store catalog data must load synchronously from memory with instant broadcast synchronization when updated:
-
-```javascript
-// productStore.js
-const memoryCache = new Map();
-
-export function getStoredProducts(defaultProducts) {
-  if (typeof window === "undefined") return defaultProducts;
-  if (memoryCache.has("all")) return memoryCache.get("all");
-  
-  try {
-    const raw = localStorage.getItem("store_products");
-    if (raw) {
-      const parsed = JSON.parse(raw);
-      memoryCache.set("all", parsed);
-      return parsed;
-    }
-  } catch (err) {}
-
-  memoryCache.set("all", defaultProducts);
-  return defaultProducts;
-}
-
-export function saveProducts(products) {
-  memoryCache.set("all", products);
-  localStorage.setItem("store_products", JSON.stringify(products));
-  // Broadcast update to all mounted components
-  window.dispatchEvent(new CustomEvent("store_products_updated", { detail: products }));
-}
-```
-
----
-
-## 🚫 7. Universal Anti-Cliché & Anti-AI-Slop Rules
-
-* ❌ **NO generic purple gradients** plastered randomly over cards.
-* ❌ **NO fake generic stock reviews** with broken avatars.
-* ❌ **NO sluggish 500ms fade-ins** that delay customer navigation.
-* ❌ **NO non-functional placeholder buttons**. Every button triggers checkout, guides, or modal drawers.
-* ✅ **ONLY custom layouts, crisp high-contrast status pills, tactile press feedback, and real-time store sync.**
+* ❌ **NO hardcoded brand names or logos**: Everything must read from `shop.logo_url` and `shop.name`.
+* ❌ **NO static fallback products overriding deleted items**: If a product is removed in SellAuth, it must disappear from the frontend immediately.
+* ❌ **NO unsanitized innerHTML**: Use `_esc.html()` on all dynamic data.
+* ❌ **NO non-functional placeholder buttons**: Every button leads to purchase, duration selection, or portal lookup.
+* ✅ **ONLY custom dynamic layouts, crisp status pills, 2-step verification portals, and live store sync.**
